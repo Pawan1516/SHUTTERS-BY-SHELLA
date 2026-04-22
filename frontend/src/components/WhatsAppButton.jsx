@@ -9,7 +9,7 @@ const WhatsAppButton = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/settings');
+        const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings');
         setSettings({
           whatsapp: data.whatsappNumber || '9000092018',
           message: data.whatsappMessage || 'Hi Seenu Shella, I want to book a shoot.',

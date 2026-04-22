@@ -15,7 +15,7 @@ const Reviews = () => {
 
   const fetchApprovedReviews = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/reviews');
+      const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews');
       setReviews(data);
     } catch (err) {}
     setLoading(false);
@@ -24,7 +24,7 @@ const Reviews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/reviews', formData);
+      await axios.post('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews', formData);
       setSubmitted(true);
       setFormData({ name: '', email: '', rating: 5, message: '' });
       setTimeout(() => setSubmitted(false), 5000);

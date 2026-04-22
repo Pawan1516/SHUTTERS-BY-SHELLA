@@ -27,9 +27,9 @@ const AdminDashboard = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${admin.token}` } };
       const [mRes, vRes, rRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/media'),
-        axios.get('http://localhost:5000/api/visitors'),
-        axios.get('http://localhost:5000/api/reviews/all', config)
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media'),
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/visitors'),
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews/all', config)
       ]);
       setMedia(mRes.data);
       setStats({ media: mRes.data.length, visitors: vRes.data.count, reviews: rRes.data.length });
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
         headers: { Authorization: `Bearer ${admin.token}` },
         onUploadProgress: (p) => setProgress(Math.round((p.loaded * 100) / p.total))
       };
-      await axios.post('http://localhost:5000/api/media', formData, config);
+      await axios.post('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media', formData, config);
       setUploadData({ category: 'Wedding', tags: '', file: null, preview: null });
       fetchAllData();
       alert('Upload Successful!');
@@ -69,7 +69,7 @@ const AdminDashboard = () => {
   const updateReviewStatus = async (id, status) => {
     try {
       const config = { headers: { Authorization: `Bearer ${admin.token}` } };
-      await axios.put(`http://localhost:5000/api/reviews/${id}/status`, { status }, config);
+      await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews/${id}/status`, { status }, config);
       fetchAllData();
     } catch (err) {}
   };
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
     if (!window.confirm('Delete review?')) return;
     try {
       const config = { headers: { Authorization: `Bearer ${admin.token}` } };
-      await axios.delete(`http://localhost:5000/api/reviews/${id}`, config);
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews/${id}`, config);
       fetchAllData();
     } catch (err) {}
   };
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this visual?')) return;
     try {
       const config = { headers: { Authorization: `Bearer ${admin.token}` } };
-      await axios.delete(`http://localhost:5000/api/media/${id}`, config);
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media/${id}`, config);
       fetchAllData();
       alert('Visual Deleted');
     } catch (err) {

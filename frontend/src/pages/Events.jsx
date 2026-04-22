@@ -11,7 +11,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/events');
+        const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/events');
         setEvents(data);
       } catch (err) {}
       setLoading(false);

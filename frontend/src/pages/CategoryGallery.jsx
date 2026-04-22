@@ -18,7 +18,7 @@ const CategoryGallery = () => {
   const fetchCategoryMedia = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/media?category=${category}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media?category=${category}`);
       setMedia(data);
     } catch (err) {
       console.error(err);

@@ -22,7 +22,7 @@ const EventGallery = () => {
 
   const loadEventData = async () => {
     try {
-      const { data } = await axios.post(`http://localhost:5000/api/events/${id}/access`, { password });
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/events/${id}/access`, { password });
       setEventData(data.event);
       setMedia(data.media);
       setAuthenticated(true);
@@ -38,7 +38,7 @@ const EventGallery = () => {
 
   const fetchReviews = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/reviews');
+      const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews');
       setReviews(data.filter(r => r.eventId === id && r.status === 'approved'));
     } catch (err) {}
   };
@@ -46,7 +46,7 @@ const EventGallery = () => {
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/reviews', { ...reviewForm, eventId: id });
+      await axios.post('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews', { ...reviewForm, eventId: id });
       setSubmitted(true);
       setReviewForm({ name: '', rating: 5, message: '' });
     } catch (err) {

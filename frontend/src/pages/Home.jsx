@@ -39,10 +39,10 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const [sRes, pRes, rRes, heroRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/settings').catch(() => ({ data: {} })),
-        axios.get('http://localhost:5000/api/media?limit=6').catch(() => ({ data: [] })),
-        axios.get('http://localhost:5000/api/reviews').catch(() => ({ data: [] })),
-        axios.get('http://localhost:5000/api/media?limit=6&type=image').catch(() => ({ data: [] }))
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings').catch(() => ({ data: {} })),
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media?limit=6').catch(() => ({ data: [] })),
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews').catch(() => ({ data: [] })),
+        axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media?limit=6&type=image').catch(() => ({ data: [] }))
       ]);
       if (sRes.data) setSettings(prev => ({ ...prev, ...sRes.data }));
       if (pRes.data) setProjects(pRes.data);

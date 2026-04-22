@@ -18,7 +18,7 @@ const Portfolio = () => {
   const fetchMedia = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/media?category=${filter}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/media?category=${filter}`);
       setMedia(data);
     } catch (err) {
       console.error(err);
