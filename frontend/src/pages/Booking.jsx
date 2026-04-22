@@ -20,7 +20,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings');
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings`);
         if (data) setSettings(prev => ({ ...prev, ...data }));
       } catch (err) {}
     };

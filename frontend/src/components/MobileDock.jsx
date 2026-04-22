@@ -10,7 +10,7 @@ const MobileDock = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const { data } = await axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings');
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings`);
         setSettings({
             whatsapp: data.whatsappNumber || '9000092018',
             phone: data.phoneNumber || '9000092018',

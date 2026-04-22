@@ -15,8 +15,8 @@ const Footer = () => {
     const fetchFooterData = async () => {
       try {
         const [vRes, sRes] = await Promise.all([
-          axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/visitors').catch(() => ({ data: { count: 0 } })),
-          axios.get('${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings').catch(() => ({ data: {} }))
+          axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/visitors`).catch(() => ({ data: { count: 0 } })),
+          axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/settings`).catch(() => ({ data: {} }))
         ]);
         if (vRes.data) setVisitorCount(vRes.data.count || 0);
         if (sRes.data) setSettings(prev => ({ ...prev, ...sRes.data }));
