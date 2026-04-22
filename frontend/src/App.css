@@ -1,0 +1,22 @@
+/* Empty or very minimal App overrides since everything is in index.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+table th {
+  padding: 1rem;
+  border-bottom: 2px solid var(--border-glass);
+  color: var(--accent-gold);
+}
+
+table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-main);
+}
